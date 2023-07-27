@@ -37,14 +37,15 @@ jobs:
       #     charts_dir: ./
       #   env:
       #     CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.HELM_SECRET }}
-          logout: false
+      # - name: Login to GitHub Container Registry
+      #   uses: docker/login-action@v2
+      #   with:
+      #     registry: ghcr.io
+      #     username: ${{ github.actor }}
+      #     password: ${{ secrets.HELM_SECRET }}
+      #     logout: false
       - name: Package Helm Chart
         run: |
           helm package .
+          echo ${{ secrets.HELM_SECRET }} | helm registry login ghcr.io -u ${{ github.actor }} --password-stdin
           helm push *.tgz oci://ghcr.io/github-actions/helm-chart-poc
