@@ -38,4 +38,4 @@ jobs:
       - name: Package Helm Chart
         run: |
           helm package .
-          helm push *.tgz oci://ghcr.io/amanthakur0001/helm-chart-poc
+          helm push *.tgz oci://ghcr.io/github-actions/helm-chart-poc
