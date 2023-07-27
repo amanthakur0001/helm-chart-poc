@@ -43,6 +43,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.HELM_SECRET }}
+          logout: false
       - name: Package Helm Chart
         run: |
           helm package .
