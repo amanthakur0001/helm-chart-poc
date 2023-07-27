@@ -2,7 +2,6 @@ name: Release Charts
 
 env:
   HELM_EXPERIMENTAL_OCI: 1 #enable OCI support
-  HELM_VERSION_TO_INSTALL: 3.5.0 # version of HEL to install
   GCR_IMAGE: ghcr.io/${{ github.repository_owner }}/helm-chart-poc
 
 on:
@@ -30,7 +29,7 @@ jobs:
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
-          version: ${{ env.HELM_VERSION_TO_INSTALL }}
+          version: v3.8.1
 
       # - name: Run chart-releaser
       #   uses: helm/chart-releaser-action@v1.4.0
